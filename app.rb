@@ -12,6 +12,11 @@ class App < Sinatra::Base
   get "/" do
     erb :index
   end
+  
+  post "/" do
+    user = params[:user]
+    redirect "/#{user}"
+  end
 
   get "/:user" do
     @user = params[:user]
