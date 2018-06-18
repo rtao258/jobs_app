@@ -15,7 +15,7 @@ class App < Sinatra::Base
   
   post "/" do
     user = params[:user]
-    redirect "/#{user}"
+    redirect url("/#{user}")
   end
 
   get "/:user" do
