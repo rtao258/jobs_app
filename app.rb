@@ -6,7 +6,7 @@ class App < Sinatra::Base
   set :erb, :escape_html => true
 
   def title
-    "My App"
+    "Jobs App"
   end
 
   get "/" do
