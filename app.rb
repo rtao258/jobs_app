@@ -1,6 +1,9 @@
-require "sinatra/base"
-require "open3"
+require "sinatra/base"  # Sinatra
+require "open3"         # Commands
+
+# XML
 require "nokogiri"
+require_relative "xml_tools"
 
 class App < Sinatra::Base
   set :erb, :escape_html => true
@@ -10,8 +13,12 @@ class App < Sinatra::Base
   end
 
   get "/" do
-    erb:index
+    erb :index
   end
+  
+  post "/" do
+    @user = params[:user]
+    redirect url("/#{@user}")
 
   get "/:user" do
     @user = params[:user]
@@ -21,6 +28,7 @@ class App < Sinatra::Base
     output = Nokogiri::XML(output)
 
     output.css("Job").each do |job|
+      # job = job.content
       job_owner = job.at_css("Job_Owner").content.split("@")[0]
       owners << job_owner
       
@@ -28,6 +36,7 @@ class App < Sinatra::Base
         
         job_name = job.at_css("Job_Name").content
         job_ID = job.at_css("Job_Id").content.split(".")
+        # throw job
         mem = nil #job.at_css("resources_used mem").content
         vmem = nil #job.at_css("resources_used vmem").content
         walltime = nil #job.at_css("resources_used walltime").content
