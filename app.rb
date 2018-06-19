@@ -4,6 +4,7 @@ require "open3"         # Commands
 # XML
 require "nori"
 require "nokogiri"
+require_relative "xml_tools"
 
 class App < Sinatra::Base
   set :erb, :escape_html => true
@@ -19,7 +20,6 @@ class App < Sinatra::Base
   post "/" do
     @user = params[:user]
     redirect url("/#{@user}")
-  end
 
   get "/:user" do
     @user = params[:user]
