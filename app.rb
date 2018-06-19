@@ -20,6 +20,7 @@ class App < Sinatra::Base
   post "/" do
     @user = params[:user]
     redirect url("/#{@user}")
+  end
 
   get "/:user" do
     @user = params[:user]
