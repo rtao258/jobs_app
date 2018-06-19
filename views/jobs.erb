@@ -1,3 +1,31 @@
-<h1>Jobs for <%= @user %></h1>
+<style>
+    .job
+    {
+        padding: 10px;
+        border: 5px solid gray;
+        border-radius: 20px;
+    }
+</style>
 
-<%= @output %>
+<script>
+    $(document).ready(function(){
+        $(".job-details").hide()
+        $(".job").click(function(){
+            $(this).find(".job-details").toggle(500)
+        });
+    });
+</script>
+
+<br>
+<h1><%= @user %>'s jobs</h1>
+
+<% @output.each do |job| %>
+    <br>
+    <div class="job">
+        <h2><%= job[:job_name] %></h2>
+        <p><%= job[:job_ID][0] %></p>
+        <div class="job-details">
+            <p><%= job[:walltime] %></p>
+        </div>
+    </div>
+<% end %>

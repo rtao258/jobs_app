@@ -55,7 +55,6 @@ class App < Sinatra::Base
         euser = job["euser"]
         egroup = job["egroup"]
         
-        
         user_jobs << {job_owner: job_owner, job_name: job_name, job_ID: job_ID, mem: mem, vmem: vmem, walltime: walltime, 
                   queue: queue, server: server, 
                   err_path: error_path, out_path: output_path, 
