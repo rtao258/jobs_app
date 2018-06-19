@@ -6,4 +6,5 @@ gem "auto_reloader", "~> 0.4"
 
 gem "pry", :group => :development
 
+gem "nori"
 gem "nokogiri"
